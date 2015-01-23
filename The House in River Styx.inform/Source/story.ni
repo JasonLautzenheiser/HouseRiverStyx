@@ -2,8 +2,13 @@
 
 Volume - Meta
 
+[Include Easy Doors by Hanon Ondricek.]
+
 
 Volume - Objects
+
+test is a region.
+
 
 Book - Kinds
 
@@ -26,27 +31,48 @@ near-house is a region in outside-house.
 
 Chapter - Front Porch
 
-front-porch is a room in near-house.  The front-porch is east of the entryway.
+front-porch is a room in near-house.  
 The printed name of front-porch is "Front Porch".
+
+Chapter - Front Door
+
+front-door is a door.  The front-door is west of front-porch and east of entryway.
+The printed name of front-door is "front door".
 
 Chapter - South Porch
 
-south-porch is a room in near-house.  The south-porch is south of the kitchen.
+south-porch is a room in near-house. 
 The printed name of south-porch is "South Porch".
+
+Chapter - South door
+
+south-door is a door.  The south-door is south of the kitchen and north of south-porch.  The printed name of south-door is "sliding door".
 
 Chapter - North West Porch
 
-north-west-porch is a room in near-house.  the north-west-porch is north of the kitchen.
+north-west-porch is a room in near-house.  
 The printed name of north-west-porch is "Northwest Porch".
+
+Chapter - Northwest-door
+
+north-west-door is a door.  The north-west-door is north of the kitchen and south of the north-west-porch.
 
 Chapter - North east porch
 
-north-east-porch is a room in near-house.  The north-east-porch is north of the dining-room.
+north-east-porch is a room in near-house.  
 The printed name of north-east-porch is "Northeast Porch".
+
+Chapter - Dining-room-door
+
+The dining-room-door is a door.  The dining-room-door is north of the dining-room and south of the north-east-porch.
 
 Chapter - Pergola
 
 The pergola is a room in near-house.  The printed name of pergola is "Pergola"
+
+Chapter - Patio door
+
+the patio-door is a door.  The patio-door is east of the pergola and west of the pantry.
 
 Part - North Side
 
@@ -116,9 +142,22 @@ Chapter - Basement
 
 The basement is a room in basement-region.  The printed name of basement is "Basement".
 
+Chapter - Root Cellar
+
+The root-cellar is a room in basement-region.  The printed name of root-cellar is "Root Cellar".  The root-cellar is east of basement.
+
 Chapter - Basement Stairs	
 
 The basement-stairs is a staircase.  The printed name of basement-stairs is "basement stairs".  The basement-stairs are below the mud-room and above the basement.
+
+Chapter - Exterior Basement Entrance
+
+The exterior-basement-door is a door.  The printed name of exterior-basement-door is "outside basement entrance".  The exterior-basement-door is above root-cellar and below north-yard.  It is openable and closed.
+
+Before going down in north-yard:
+	try entering exterior-basement-door instead.
+	
+
 
 Part - Ground Floor
 
@@ -126,7 +165,7 @@ ground-floor is a region in inside-house.
 
 Chapter - Pantry
 
-The pantry is a room in ground-floor.  The pergola is west of the pantry.  The pantry is west of the kitchen.
+The pantry is a room in ground-floor.  The pantry is west of the kitchen.
 The printed name of the pantry is "Pantry".
 
 Chapter - Mudroom
