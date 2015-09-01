@@ -516,11 +516,14 @@ near-house is a region in outside-house.
 north-side is a region in outside-house.
 west-side is a region in outside-house.
 south-side is a region in outside-house.
+east-side is a region in outside-house.
 inside-house is a region.
 basement-region is a region in inside-house.
 ground-floor is a region in inside-house.
 second-floor is a region in inside-house.
 
+Instead of going down in an outdoor room:
+	say "There is really nothing down from here except for the ground which is slightly soft, but still solid enough."
 
 
 Book 2 - Front Porch
@@ -678,7 +681,22 @@ Does the player mean doing something to the right drawer:  It is likely.
 
 
 
+Book 5 - Front Yard
 
+The east-yard is an outdoor room in east-side.  The printed name of east-yard is "Front Yard".  East-yard is east of front-porch.  East-yard is southeast of north-yard and northeast of south-yard.  The description of east-yard is "There is not much room in this part of the yard as the house is not too far off the main road.  There is however a [large shade tree] in the middle if it that shades the house nicely in the morning sun."
+
+Understand "East yard" and "Front yard" as east-yard.  Understand "yard" as east-yard when the location is east-yard.
+
+The large shade tree is scenery in east-yard.  The description of it is "The large shade tree stands majestically in your front yard.  It is well over fifty feet tall and easily over a hundred years old.  The tree branches spread over the front porch to shade the house from the mornig sun.  The branches closest to the house have come very close to an upstairs window."
+
+Instead of going up in east-yard:
+	say "The lowest limbs of this tree are much to high to reach."
+
+Instead of going in east-yard when the noun is east or the noun is southeast or the noun is northeast:
+	say "This road is pretty well traveled so you wouldn't want to go out into the road."
+	
+instead of jumping in east-yard:
+	say "You jump, but you still can't reach the branches of the tree."
 
 Volume 99 -  Unimplemented map
 
