@@ -693,10 +693,27 @@ Instead of going up in east-yard:
 	say "The lowest limbs of this tree are much to high to reach."
 
 Instead of going in east-yard when the noun is east or the noun is southeast or the noun is northeast:
-	say "This road is pretty well traveled so you wouldn't want to go out into the road."
+	say "[stay-out-of-road]"
 	
 instead of jumping in east-yard:
 	say "You jump, but you still can't reach the branches of the tree."
+	
+To say stay-out-of-road:
+	say "This road is pretty well traveled so you wouldn't want to go out into it."
+
+Book 6 - Driveway	
+
+The Driveway is an outdoor room in east-side.   Driveway is south of east-yard and east of south-yard.  The description of driveway is "The [gravel] driveway ends here and continues east to the road."
+
+The gravel is scenery in the driveway.  The description of gravel is "A fresh layer of small white gravel cover the driveway."
+
+Instead of taking the gravel:
+	say "You kick the gravel with you feet but find nothing of interest."
+
+Instead of going in driveway when the noun is east or the noun is southeast or the noun is northeast:
+	say "[stay-out-of-road]"
+
+
 
 Volume 99 -  Unimplemented map
 
