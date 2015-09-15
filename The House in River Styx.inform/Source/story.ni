@@ -53,9 +53,7 @@ To set the/-- pronoun him to (O - an object): (- LanguagePronouns-->6 = {O}; -).
 To set the/-- pronoun her to (O - an object): (- LanguagePronouns-->9 = {O}; -).
 To set the/-- pronoun them to (O - an object): (- LanguagePronouns-->12 = {O}; -).
 
-Part 3 - Slight Changes to Extensions
-
-Part 4 - Modifications to Standard Actions
+Part 3 - Modifications to Standard Actions
 
 instead of pushing or pulling or turning an open door:  try closing the noun.
 instead of pushing or pulling or turning a closed door:  try opening the noun.
@@ -76,19 +74,20 @@ The examine devices rule is not listed in the carry out examining rules.
 Understand "release [something]" as dropping.
 Understand "slide [something]" as pushing.
 
+To say verb word: (- print (address) verb_word; -).
 
-Part 5 - Emptiness
+Part 4 - Emptiness
 
 Definition: a container is empty if the first thing held by it is nothing.
 Definition: a supporter is empty if the first thing held by it is nothing.
 
 
-Part 6 - Standard Responses
+Part 5 - Standard Responses
 
 The block saying sorry rule response (A) is "You mumble something apologetic under your breath."
 The parser error internal rule response (R) is "I'm not sure what you're talking about."
 
-Part 7 - Listing exits
+Part 6 - Listing exits
 
 When play begins: 
 	now the left hand status line is "[the player's surroundings] [--] Exits: [exit list]"; 
@@ -121,12 +120,12 @@ down	"D"
 inside	"IN"    
 outside	"OUT"  
 
-Part 8 - Input editing
+Part 7 - Input editing
 
 First after reading a command:
 	remove stray punctuation.
 	
-Part 9 - Verbs
+Part 8 - Verbs
 
 To peer is a verb.
 
@@ -134,7 +133,7 @@ To peer is a verb.
 
 
 
-Part 10 - Not for release
+Part 9 - Not for release
 
 When play begins, seed the random-number generator with 88.
 
@@ -917,14 +916,162 @@ Understand "door" or "attic door" or "old wooden door" or "wooden" or "wooden do
 The description of attic-door is "The attic door is six old rickety 2x4s, nailed together with hinges. More to keep the draft out rather than anything else."
 
 
-Book 13 - Servants Stairs
+Book 13 - Master Closet
+
+The master-closet is a room in second-floor.  The master-closet is southeast of the master-bedroom.
+The printed name of master-closet is "Master Closet".
+The description of master-closet is "This closet holds the majority of your [everyday clothes], the ones you need at hand quickly.  Above the [rack] is a [master-closet-shelf] on which are some [boxes-and-papers][rolls-of-wallpaper]."
+
+
+To say rolls-of-wallpaper:
+	if secret-door is not in location:
+		say ".  In the darkness behind your hanging clothes, leans old [rolls of wallpaper] that were here when you moved in";
+	otherwise:
+		if rolls of wallpaper are in location:
+			say " and strewn on the floor are [rolls of wallpaper]";
+	
+Some everyday clothes are in the master-closet.  The description of the everyday clothes is "Just your usual shirts and sweaters that you like to pull out when you are not going out.   Your good clothes are all in your main walkin closet off to the west."
+
+Instead of doing anything with the everyday clothes, say "You flip through your shirts and see many of your favorites."
+
+The rack is a fixed in place thing in the master-closet.  The description of the rack is "The rack your clothes are hanging from is nothing more than an old metal water pipe that you salvaged from the workshop and fixed into either wall."
+
+Before doing anything with the rack, say "The rack is in pretty sturdy, you'd need some tools to remove it.  None of which you have with you." instead.
+
+The master-closet-shelf is a fixed in place supporter in the master-closet.  The description is "The shelf is a piece of plywood that you nailed in above the rack to add some extra storage."  The printed name of master-closet-shelf is "shelf"
+
+Understand "shelf" as master-closet-shelf when location is master-closet.
+
+Before doing anything with the master-closet-shelf, say "The shelf is nailed soundly into the wall.  You'll not do that so easily." instead.
+
+Some boxes-and-papers are things on the master-closet-shelf.  The printed name is "boxes and papers".  
+Understand "boxes" and "papers" and "boxes and papers" as boxes-and-papers.
+
+Before doing anything with the boxes-and-papers: say "You search through the boxes but find nothing of interest." instead.
+
+Some rolls of wallpaper are things in the master-closet.  The description of rolls of wallpaper is "The old rolls look to have been here for a long time, maybe since the house was built."
+
+The secret-door is an easydoor.  The description of secret-door is "The small door is just big enough for you to fit through if you crawl on your knees."  The printed name of secret-door is "secret door in the closet".
+Secret-door leads to play-room.
+
+
+Secret-door portals secret-door2.
+
+before going east in master-closet:
+	if secret-door is in location:
+		try entering secret-door instead.
+
+after taking, pushing, pulling, attacking or searching the rolls of wallpaper:
+	if secret-door is not in master-closet:
+		say "As you move the rolls, they fall over revealing what appears to be a small door set into the back of the closet.";
+		now the secret-door is in master-closet;
+	otherwise:
+		say "You pick up the rolls of wallpaper."
+	
+Before opening secret-door:
+	if secret-door2 is in nothing:
+		say "You push on the door, but it feels like something is blocking the other side." instead;
+		
+
+Book 14 - Play room
+
+The play-room is a room in second-floor.  The play-room is south of the upstairs-hallway.
+The printed name of play-room is "Play Room".	The description of play-room is "The kids play room is filled with all kinds of toys and books.  The kids do a decent job of keeping things picked up, though there are a few books and toys strewn around the room.  A [beanbag] sits in the corner next to the [play-bookshelf] on the east wall.  Along the wall to the west is a [toychest][if stuffed animals are on toychest-top] with [stuffed animals] sitting on top[otherwise].  Some [stuffed animals] are strewn all over the floor[end if].  A window looks out to the south."
+
+A beanbag is a chair in the play-room.  The description of beanbag is "The large beanbag is the kids favorite place to read."
+Understand "bag" as beanbag.
+
+A play-bookshelf is a bookshelf in play-room.  The description of play-bookshelf is "A small bookshelf sits along the east wall holding many, mostly childrens books."  The printed name of play-bookshelf is "bookshelf".
+Understand "small/-- bookshelf/shelf/bookshelves/shelve" as play-bookshelf when location is play-room.
+
+A toychest is a closed container in play-room. the toychest is openable. The toychest-top is a supporter.  The toychest-top is part of the toychest.  Understand "chest" as toychest.  Understand "top" or "toychest top" or "lid" as toychest-top when location is play-room.
+The description of toychest is "The large toychest was a hand me down from your mother.  [if toychest is open and the number of things in toychest is one]There is nothing but some random toys inside.[otherwise]Amongst the random toys you see [list of things in the toychest].[end if]"
+[TODO:: fix issue with displaying contents of chest]
+
+Some random toys are scenery in the toychest.
+
+instead of doing anything with the random toys:
+	say "They is really nothing special about the random toys."
+
+instead of examining the toychest-top:
+	try examining the toychest instead.
+
+The bulge is a thing. The printed name of bulge is "small bulge in the wall".
+
+The playroom-window is an easywindow in play-room. The playroom-window is scenery. The lookthrough of playroom-window is "You have a good view of the cospe of pine trees from this room through the [if open]open [end if]window."  The playroom-window is openable.  The printed name of playroom-window is "window".
+
+instead of entering the playroom-window:
+	say "Climbing out onto the slick metal roof is not safe."
+	
+instead of going south in the play-room:
+	if playroom-window is open:
+		try entering the playroom-window instead;
+	otherwise:
+		say "The only way south would be through the window, which is neither open nor a good idea."
+
+The secret-door2 is an easydoor.  The description of secret-door2 is "The small door is just big enough for you to fit through if you crawl on your knees." The printed name of secret-door2 is "door hidden behind the toychest".
+secret-door2 leads to master-closet.
+
+instead of going west in play-room:
+	if secret-door2 is in location:
+		try entering secret-door2 instead;	
+	
+After opening secret-door2 for the first time:
+	if secret-door is in nothing:
+		say "As you pull the small door open, rolls of wallpaper come tumbling through.";
+		now secret-door is in master-closet;
+		now rolls of wallpaper are in play-room;
+	otherwise:
+		say "You open the small door revealing a passage into darkness."
+
+Some stuffed animals are things on toychest-top.  The description of stuffed animals is "The animals are a lifetime collection from your childhood and those of your kids.  [if stuffed animals are on toychest-top]There are so many they cover most of the top of the toychest and perched precariously halfway up the wall.[end if]"
+
+before taking, pushing, pulling, attacking or searching the stuffed animals:
+	if stuffed animals are on the toychest-top:
+		say "As you get close to the animals, they shift and fall all over the floor, leaving the toychest bare.";
+		now stuffed animals are in play-room instead.
+
+before opening the toychest:
+	if stuffed animals are on the toychest-top:
+		say "You push the animals off the top of the chest and open it.";
+		now stuffed animals are in play-room;
+
+after opening the toychest for the first time:
+	say "As you open the chest, the lid pushes against the wall and you have to move it out slightly for the lid to fully open.  As you do, you notice a slight bulge in the wall that you never noticed before.";
+	now the toychest is open;
+	now the bulge is in the play-room instead;
+		
+instead of examining, touching, taking, attacking, pushing or pulling the bulge:
+	say "As you [verb word] the bulge, the wallpaper tears with your touch and you discover a small door behind the toychest.";
+	now the bulge is off-stage;
+	now the secret-door2 is in play-room;
+		
+
+
+
+
+
+Part 1 - Playroom Books
+
+The playroom book is a kind of book.
+
+Some playroom books on the play-bookshelf are defined by the Table of Readable Playroom Books.
+
+Instead of examining a playroom book:
+	say "[one of]You flip through the pages and chuckle at; [or]One of your childs favorite lines from this book; [at random] '[i][description][/i]'[line break]".
+
+Table of Readable Playroom Books
+parlor book	author	description
+Invasion of the Appleheads	"Annette and Gina Cscone"	"Kate couldn't believe she was holding her parents in her hands."
+
+Book 15 - Servants Stairs
 
 The servants-stairs is a staircase. The description is "The dark stairs that lead down look a bit rickety, but usuable. [first time]These were once the servants stairs that lead directly to the kitchen area from the servant's quarters.[only]".
 The printed name of servants-stairs is "servants stairs".  The servants-stairs are up from pantry and down from attic.   
 
 Understand "stairs" and "staircase" as servants-stairs when location is pantry or the location is attic.
 
-Book 14 - Upstairs-hallway
+Book 16 - Upstairs-hallway
 
 The upstairs-hallway is a room in second-floor.  The upstairs-hallway is west of the upstairs-landing.
 understand "hallway" as upstairs-hallway when location is in second-floor.
@@ -932,13 +1079,13 @@ The printed name of upstairs-hallway is "Second Floor Hallway".
 
 The description of upstairs-hallway is "The long hallway travels east to west with rooms branching out.  There is a runner carpet that covers the hardwood floor.  Photographs of ancestors line the walls.  The hallway ends to the west in the master bedroom and to the east at the stairs leading down.  To the north lies the kids bathroom and to the south is the playroom." 
 
-Book 15 - Upstairs Landing
+Book 17 - Upstairs Landing
 
 The upstairs-landing is a room in second-floor.  The printed name of upstairs-landing is "Second Floor Landing".
 The description of upstairs-landing is "You're at the top of the main stairs leading back to the first floor.  The steep stairs curve slightly to the left before continuing doward.  The low [banister] of polished cherry, flows downward with the stairs on the left side.[p]The hallway continues to the west and a small alcove is tucked away to the east.  The kids bedroom is north of here."
 
 
-Book 16 Alcove
+Book 18 Alcove
 
 The alcove is a room in second-floor.  The alcove is east of the upstairs-landing.
 The printed name of alcove is "Alcove".
@@ -1131,33 +1278,27 @@ The printed name of kids-room is "Kids Bedroom".
 
 
 
-Book 28 Play room
 
-The play-room is a room in second-floor.  The play-room is south of the upstairs-hallway.
-The printed name of play-room is "Play Room".
 
-Book 29 Kids Bathroom
+Book 28 Kids Bathroom
 
 The kids-bathroom is a bathroom in second-floor.  The kids-bathroom is north of the upstairs-hallway.
 The printed name of kids-bathroom is "Second Floor Bathroom".
 
 
-Book 30 Master Bath
+Book 29 Master Bath
 
 The master-bath is a bathroom in second-floor.  The master-bath is northeast of the master-bedroom.
 The printed name of master-bath is "Master Bathroom".
 
-Book 31 Master Closet
 
-The master-closet is a room in second-floor.  The master-closet is southeast of the master-bedroom.
-The printed name of master-closet is "Master Closet".
 
-Book 32 Spring House
+Book 30 Spring House
 
 The spring-house is a room in north-side.  the spring-house is west of north-yard.
 The printed name of spring-house is "Spring House".
 
-Book 33 Workshop
+Book 31 Workshop
 
 The workshop is a room in west-side.  The workshop is south of orchard.   the workshop is southwest of backyard.
 The printed name of workshop is "Workshop".
