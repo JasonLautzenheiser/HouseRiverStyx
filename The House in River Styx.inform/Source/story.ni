@@ -178,10 +178,12 @@ The player has some text called sound.  The sound of the player is usually "sile
 
 Carry out listening to something:
 	say "From [the noun] you hear [sound of the noun]."
-	
+
 instead of listening to a room:
-	if an audible thing can be touched by the player, say "You hear [the list of audible things which can be touched by the player].";
-	otherwise say "You hear nothing unusual."
+	if an audible thing can be touched by the player:
+		say "You hear [the list of audible things which can be touched by the player].";
+	otherwise:
+		say "You hear nothing unusual."
 	
 Definition: a thing is audible if the sound of it is not "silence".
 
@@ -871,7 +873,19 @@ The lookthrough of master-bedroom-window is "[if it is nighttime]It is too dark 
 Instead of opening the master-bedroom-window:
 	say "This window was painted shut decades ago and you've not been able to break it free."
 	
+
+Part 1 - Hornets Nest
+
 The hornets nest is a part of the master-bedroom-window.  The description of hornets nest is "[nest-description]."
+The sound of the hornets nest is "[buzz-of-hornets]".
+
+To say buzz-of-hornets:
+	if it is daytime:
+		say "the loud buzz of the hornets.";
+	if it is sunrise or it is sunset:
+		say "a low hum from the resting insects.";
+	otherwise:
+		say "not much of anything".
 
 To say nest-description:
 	if it is sunrise:
@@ -883,7 +897,7 @@ To say nest-description:
 	if it is nighttime:
 		say "Though you can just make out the nest in the darkness, there doesn't seem to be any activity"
 
-Part 1 - Dresser
+Part 2 - Dresser
 
 The master-dresser is a supporter in the master-bedroom.  The description of master-dresser is "The dresser is made of cherry wood and matches much of the other furniture in the home.  Their are two drawers, one on either side and one large one on the bottom.  A mirror attached to the back stands up from the back slightly leaning against the wall." 
 
