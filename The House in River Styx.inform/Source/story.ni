@@ -27,6 +27,7 @@ Include Easy Doors by Hanon Ondricek.
 Include Easy Windows by Jason Lautzenheiser.
 Include Trinity Inventory by Mikael Segercrantz.
 Include Typographical Conveniences by Daniel Stelzer.
+Include Achievements by Juhana Leinonen.
 
 
 Book 3 - Includes - not for release
@@ -506,6 +507,17 @@ To decide whether it is sunrise: decide on whether or not sunrise is happening.
 To decide whether it is sunset: decide on whether or not sunset is happening.
 To decide whether it is crepuscular: if sunrise is happening or sunset is happening, yes; no.
 
+Book 17 - Achievements
+
+Use persistent achievements.
+
+Rule for printing the achievement text (called name):
+	say "[alert][bracket]Achievement unlocked: [name][close bracket][/alert][br]".
+
+Table of Achievements
+achievement	description	validation (rule)	awarded
+"Found the Note"	"Found the note calling for help."	--	false
+
 Volume 3 - Characters
 
 Book 1 - Player
@@ -699,6 +711,7 @@ instead of fixing the town-map:
 		if slip-of-paper is off-stage:
 			say "[line break]As you move the framed map a slip of paper falls from behind and floats to the floor.";
 			now the slip-of-paper is in entryway;
+			award the "Found the Note" achievement;
 	otherwise:
 		say "You try to adjust the map, but it's hanging about as straight as it's going to get.".
 
@@ -708,6 +721,7 @@ After taking the town-map:
 	if slip-of-paper is off-stage:
 		say "[line break]As you move the framed map a slip of paper falls from behind and floats to the floor.";
 		now the slip-of-paper is in entryway;
+		award the "Found the Note" achievement;
 
 	
 The highlighted road is a thing.  The description of highlighted road is "A short road labeled Basin St is highlighted on the map."  Understand "yellow" as highlighted road.
