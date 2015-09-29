@@ -19,8 +19,6 @@ Release along with a website, the source text and an interpreter.
 Book 2 - Includes
 
 Include Punctuation Removal by Emily Short.
-[Include Room Description Control by Emily Short.
-Include Tailored Room Description by Emily Short.]
 Include Modern Conveniences by Emily Short.
 Include Postures by Emily Short.
 Include Easy Doors by Hanon Ondricek.
@@ -28,6 +26,9 @@ Include Easy Windows by Jason Lautzenheiser.
 Include Trinity Inventory by Mikael Segercrantz.
 Include Typographical Conveniences by Daniel Stelzer.
 Include Achievements by Juhana Leinonen.
+Include Extended Grammar by Aaron Reed.
+
+
 
 
 Book 3 - Includes - not for release
@@ -131,10 +132,12 @@ Part 8 - Verbs
 To peer is a verb.
 
 
+Part 9 - Versioning	
 
+report requesting the story file version:
+	say "[i]Internal alpha 0.1[/i]"
 
-
-Part 9 - Not for release
+Part 10 - Not for release
 
 When play begins, seed the random-number generator with 88.
 
@@ -513,6 +516,7 @@ Use persistent achievements.
 
 Rule for printing the achievement text (called name):
 	say "[alert][bracket]Achievement unlocked: [name][close bracket][/alert][br]".
+
 
 Table of Achievements
 achievement	description	validation (rule)	awarded
@@ -1158,6 +1162,10 @@ Table of Readable Kids Books
 parlor book	author	description
 Mrs Brice's Mice	"Syd Hoff"	"Mrs. Brice had twenty-five mice."
 
+Book 19 Kitchen
+
+The main-kitchen is a kitchen in ground-floor.  The main-kitchen is west of the living-room and southwest of the dining-room.
+The printed name of the main-kitchen is "Kitchen".  The description of main-kitchen is "The kitchen has been greatly remodeled since you bought the house.  Kitchen cabinets line the walls where there were holes in the walls from the stolen copper piping.  The new appliances, the refrigerator, stove and sink all with stainless steel finish in contrast to the marble countertop round out the look of a modern kitchen that still fits nicely with the vintage feel of your house."
 
 Volume 6 -  Unimplemented map
 
@@ -1177,7 +1185,7 @@ The printed name of north-west-porch is "Northwest Porch".
 
 Book 4 Northwest-door
 
-north-west-door is a door.  The north-west-door is north of the kitchen and south of the north-west-porch.
+north-west-door is a door.  The north-west-door is north of the main-kitchen and south of the north-west-porch.
 
 Book 5 North east porch
 
@@ -1263,7 +1271,7 @@ Before going down in north-yard:
 
 Book 21 Pantry
 
-The pantry is a room in ground-floor.  The pantry is west of the kitchen.
+The pantry is a room in ground-floor.  The pantry is west of the main-kitchen.
 The printed name of the pantry is "Pantry".
 
 Book 22 Mudroom
@@ -1284,12 +1292,9 @@ The printed name of the dining-room is "Dining Room"
 
 
 
-Book 25 Kitchen
 
-The main-kitchen is a kitchen in ground-floor.  The main-kitchen is west of the living-room and southwest of the dining-room.
-The printed name of the main-kitchen is "Kitchen".
 
-Book 26 Downstairs Bathroom
+Book 25 Downstairs Bathroom
 
 The downstairs-bathroom is a bathroom in ground-floor.  The downstairs-bathroom is east of the mud-room.
 The printed name of the downstairs-bathroom is "Downstairs Bathroom".
@@ -1299,7 +1304,7 @@ The printed name of the downstairs-bathroom is "Downstairs Bathroom".
 
 
 
-Book 27 Kids room
+Book 26 Kids room
 
 The kids-room is a bedroom in second-floor.  The kids-room is north of the upstairs-landing.
 The printed name of kids-room is "Kids Bedroom".
@@ -1308,25 +1313,25 @@ The printed name of kids-room is "Kids Bedroom".
 
 
 
-Book 28 Kids Bathroom
+Book 27 Kids Bathroom
 
 The kids-bathroom is a bathroom in second-floor.  The kids-bathroom is north of the upstairs-hallway.
 The printed name of kids-bathroom is "Second Floor Bathroom".
 
 
-Book 29 Master Bath
+Book 28 Master Bath
 
 The master-bath is a bathroom in second-floor.  The master-bath is northeast of the master-bedroom.
 The printed name of master-bath is "Master Bathroom".
 
 
 
-Book 30 Spring House
+Book 29 Spring House
 
 The spring-house is a room in north-side.  the spring-house is west of north-yard.
 The printed name of spring-house is "Spring House".
 
-Book 31 Workshop
+Book 30 Workshop
 
 The workshop is a room in west-side.  The workshop is south of orchard.   the workshop is southwest of backyard.
 The printed name of workshop is "Workshop".
