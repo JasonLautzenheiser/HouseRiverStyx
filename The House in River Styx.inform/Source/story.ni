@@ -28,9 +28,6 @@ Include Typographical Conveniences by Daniel Stelzer.
 Include Achievements by Juhana Leinonen.
 Include Extended Grammar by Aaron Reed.
 
-
-
-
 Book 3 - Includes - not for release
 
 Include Response Assistant by Aaron Reed.
@@ -162,7 +159,10 @@ Include (-
 
 -) after "Definitions.i6t".			
 
+Book 2.1
 
+Looking toward is an action applying to one visible thing.
+Understand "look toward [any adjacent room]" as looking toward.
 
 Book 2 - Automatic Examining
 
@@ -185,7 +185,7 @@ Carry out listening to something:
 
 instead of listening to a room:
 	if an audible thing can be touched by the player:
-		say "You hear [the list of audible things which can be touched by the player].";
+		say "You hear [list of audible things which can be touched by the player].";
 	otherwise:
 		say "You hear nothing unusual."
 	
@@ -289,13 +289,27 @@ Book 9 - Valid directions
 Definition: a direction (called thataway) is viable if the room thataway from the location is a room.
 
 Instead of going nowhere:
-	let count of exits be the number of viable directions;
-	if the count of exits is 0, say "You appear to be trapped in here." instead;
-	if the count of exits is 1, say "From here, the only way to go is [a list of viable directions].";
-	otherwise say "From here, the viable exits are to [a list of viable directions]."
+	say "[getmyexits]".
+
 	
 A direction can be proper-named. Down is proper-named. Up is proper-named.
 
+
+Book 9.1 - Exits
+
+RequestingExits is an action applying to nothing.
+understand "exits" as requestingexits.
+
+carry out requestingexits:
+	say "[getmyexits]".
+
+Book 9.2 - GetMyExits
+
+To say getmyexits:
+	let count of exits be the number of viable directions;
+	if the count of exits is 0, say "You appear to be trapped in here.";
+	if the count of exits is 1, say "From here, the only way to go is [a list of viable directions].";
+	otherwise say "From here, the viable exits are to [a list of viable directions]."
 
 
 Book 10 - Look at Location as LOOK
@@ -1162,10 +1176,14 @@ Table of Readable Kids Books
 parlor book	author	description
 Mrs Brice's Mice	"Syd Hoff"	"Mrs. Brice had twenty-five mice."
 
-Book 19 Kitchen
+Book 19 - Kitchen
 
 The main-kitchen is a kitchen in ground-floor.  The main-kitchen is west of the living-room and southwest of the dining-room.
 The printed name of the main-kitchen is "Kitchen".  The description of main-kitchen is "The kitchen has been greatly remodeled since you bought the house.  Kitchen cabinets line the walls where there were holes in the walls from the stolen copper piping.  The new appliances, the refrigerator, stove and sink all with stainless steel finish in contrast to the marble countertop round out the look of a modern kitchen that still fits nicely with the vintage feel of your house."
+
+The description of the refrigerator is "The fridge sits in a cubby hole to the left of the counter top."  The sound of the refrigerator is "a low hum".  Understand "fridge" as refrigerator.
+
+The description of the sink is "The dual basin stainless sink is large and deep."  The sound of the sink is "the drip of the faucet"
 
 Volume 6 -  Unimplemented map
 
