@@ -25,7 +25,7 @@ Include Easy Doors by Hanon Ondricek.
 Include Easy Windows by Jason Lautzenheiser.
 Include Trinity Inventory by Mikael Segercrantz.
 Include Typographical Conveniences by Daniel Stelzer.
-Include Achievements by Juhana Leinonen.
+[Include Achievements by Juhana Leinonen.]
 Include Extended Grammar by Aaron Reed.
 
 Book 3 - Includes - not for release
@@ -159,12 +159,12 @@ Include (-
 
 -) after "Definitions.i6t".			
 
-Book 2.1
+Book 2 
 
 Looking toward is an action applying to one visible thing.
 Understand "look toward [any adjacent room]" as looking toward.
 
-Book 2 - Automatic Examining
+Book 3 - Automatic Examining
 
 A thing can be examined or unexamined.  A thing is usually unexamined.  
 Carry out examining something:
@@ -174,7 +174,7 @@ Carry out examining something:
 	say "Taken.  [run paragraph on]";
 	try examining the noun.]
 
-Book 3 - Listening and Sounds
+Book 4 - Listening and Sounds
 
 The report listening rule is not listed in any rulebook.
 A thing has some text called sound.  The sound of a thing is usually "silence".
@@ -185,16 +185,17 @@ Carry out listening to something:
 
 instead of listening to a room:
 	if an audible thing can be touched by the player:
-		say "You hear [list of audible things which can be touched by the player].";
+		say "You hear [list of audible familiar things which can be touched by the player].";
 	otherwise:
 		say "You hear nothing unusual."
 	
-Definition: a thing is audible if the sound of it is not "silence".
+Definition: a thing is audible if the sound of it is not "silence" and it is familiar.
+Definition: a thing is inaudible if it is not audible.
 
 Before printing the name of something audible while listening to a room:
 	say "[sound] from the ".
 
-Book 4 - Odors
+Book 5 - Odors
 
 A thing has some text called scent.  The scent of a thing is usually "odorless".
 The player has some text called scent.  The scent of the player is usually "odorless".
@@ -212,13 +213,10 @@ instead of smelling a room:
 	otherwise say "You smell nothing unexpected."
 	
 Definition: a thing is smellable if the scent of it is not "odorless".
+Definition: a thing is odorless if it is not smellable.
 
 
-
-
-
-
-Book 5 - Stairs
+Book 6 - Stairs
 
 A staircase is a kind of door.  A staircase is usually open.  A staircase is seldom openable.  A staircase is usually scenery.
 
@@ -226,7 +224,7 @@ Instead of climbing a staircase:
 	try entering the noun.
 
 
-Book 6 - Doors
+Book 7 - Doors
 
 Knocking on is an action applying to one thing.  
 Understand "knock on [something]" as knocking on.  
@@ -248,20 +246,59 @@ Check knocking on a door:
 
 
 
-Book 7 - Properties of Objects
+Book 8 - Properties of Objects
 
 The description of a thing is usually "[We] give [the noun] a glance, but realize [regarding the noun][they] probably [aren't] important.";
 
 A thing can be light or heavy. A thing is usually heavy.
 
-A thing can be examined or unexamined.  A thing is usually unexamined.
-After examining something (called the target):  now the target is examined.
+
+Chapter 1 - Sight 
+
+[based on Epistemology by Eric Eve with modifications by Daniel Stelzer]
 
 A thing can be seen or unseen.  A thing is usually unseen.  The player is seen.  
-After printing the name of something (called the target): now the target is seen.
-	
+Carry out looking (this is the mark items as seen when looking rule):
+	unless in darkness:
+		repeat with item running through things that are enclosed by the location:
+			if the item is not enclosed by an opaque closed container:
+				now the item is seen.
 
-Chapter 1 - Writing
+Carry out opening a container (this is the mark items as seen on opening a container rule):
+	repeat with item running through things that are enclosed by the noun:
+		if the item is unseen and the item is visible:
+			now the item is seen.
+		
+The mark items as seen on opening a container rule is listed after the standard opening rule in the carry out opening rules.
+
+Chapter 2 - Familiarity
+
+A thing can be familiar or unfamiliar.  A thing is usually unfamiliar.
+
+Definition: a thing is known if it is familiar or it is seen.
+Definition: a thing is unknown if it is not known.
+
+Chapter 3 - Examined-ness
+
+A thing can be examined or unexamined.  A thing is usually unexamined.
+Carry out examining something visible (this is the mark items as seen on examining rule):
+	now the noun is examined;
+	now the noun is familiar;
+	now the noun is seen.
+
+Chapter 4 - Testing Commands - not for release
+
+Requesting epistemic status of is an action out of world applying to one visible thing.
+
+Understand "epistat [any thing]" as requesting epistemic status of.
+
+Report requesting epistemic status of (this is the report epistemic status rule):
+	say "[noun] - [if seen]seen[otherwise]unseen[end if] /
+		[if familiar]familiar[otherwise]unfamiliar[end if] /
+		[if examined]examined[otherwise]unexamined[end if] /
+		[if known]known[otherwise]unknown[end if]."
+
+Chapter 5 - Writing
 
 A thing has some text called printing.  The printing of a thing is usually "blank".
 
@@ -269,7 +306,7 @@ Definition: a thing is legible if the printing of it is not "blank".
 
 After examining a legible thing: try reading the noun.
 
-Book 8 - Properties of Rooms
+Book 9 - Properties of Rooms
 
 Definition: a room is locally-present if it is the location.
 
@@ -284,7 +321,7 @@ Instead of someone going to an impassible room (this is the NPCs can't go to imp
 
 
 
-Book 9 - Valid directions
+Book 10 - Valid directions
 
 Definition: a direction (called thataway) is viable if the room thataway from the location is a room.
 
@@ -295,7 +332,7 @@ Instead of going nowhere:
 A direction can be proper-named. Down is proper-named. Up is proper-named.
 
 
-Book 9.1 - Exits
+Book 11 - Exits
 
 RequestingExits is an action applying to nothing.
 understand "exits" as requestingexits.
@@ -303,7 +340,7 @@ understand "exits" as requestingexits.
 carry out requestingexits:
 	say "[getmyexits]".
 
-Book 9.2 - GetMyExits
+Book 12 - GetMyExits
 
 To say getmyexits:
 	let count of exits be the number of viable directions;
@@ -312,7 +349,7 @@ To say getmyexits:
 	otherwise say "From here, the viable exits are to [a list of viable directions]."
 
 
-Book 10 - Look at Location as LOOK
+Book 13 - Look at Location as LOOK
 
 Understand "here" or "surroundings" as a room when the item described is the location.
 
@@ -324,7 +361,7 @@ Local looking is an action applying to one thing.
 Carry out local looking:
 	try looking.
 
-Book 11 - New Actions
+Book 14 - New Actions
 
 
 Part 1 - Fixing
@@ -374,7 +411,7 @@ Report sliding on:
 
 
 
-Book 12 - Default world model tweaks
+Book 15 - Default world model tweaks
 
 Part 1 - Drawers
 
@@ -468,7 +505,7 @@ Instead of consulting a book about a topic: say "There doesn't seem to be an ind
 
 Before listing contents [when taking inventory]: group books together as "books".
 
-Book 13 - Translucency
+Book 16 - Translucency
 
 A thing can be translucent.  A thing is usually not translucent.
 
@@ -493,7 +530,7 @@ Report someone examining something through something:
 	say "[The actor] [peer] into [the second noun], examining [the noun] closely."
 	
 
-Book 14 - About and Credits
+Book 17 - About and Credits
 
 Requesting story information is an action out of world applying to nothing.  Understand "about" as requesting story information.
 Carry out requesting story information:
@@ -506,11 +543,11 @@ Carry out displaying the credits:
 	Cover art by[br]
 	Title card by[br]".
 
-Book 15 - Useless Actions
+Book 18 - Useless Actions
 
 Understand "xyzzy" or "say xyzzy" as xyzzying.  Xyzzying is an action applying to nothing.  Carry out xyzzying: say "Ulp."
 
-Book 16 - Day and Night
+Book 19 - Day and Night
 
 Night is a recurring scene.  Night begins when play begins.  Night ends when the time of day is 6:00 AM.
 Sunrise is a recurring scene.  Sunrise begins when night ends.  Sunrise ends when the time of day is 7:00 AM.
@@ -524,9 +561,9 @@ To decide whether it is sunrise: decide on whether or not sunrise is happening.
 To decide whether it is sunset: decide on whether or not sunset is happening.
 To decide whether it is crepuscular: if sunrise is happening or sunset is happening, yes; no.
 
-Book 17 - Achievements
+Book 20 - Achievements
 
-Use persistent achievements.
+[Use persistent achievements.
 
 Rule for printing the achievement text (called name):
 	say "[alert][bracket]Achievement unlocked: [name][close bracket][/alert][br]".
@@ -535,6 +572,7 @@ Rule for printing the achievement text (called name):
 Table of Achievements
 achievement	description	validation (rule)	awarded
 "Found the Note"	"Found the note calling for help."	--	false
+]
 
 Volume 3 - Characters
 
@@ -599,7 +637,28 @@ Part 3 - Ceiling
 
 The ceiling is a backdrop.  The ceiling is everywhere.  "TODO:  Ceiling description"	
 
-Part 4 - Floor
+Part 4 - Floor 
+
+[http://www.intfiction.org/forum/viewtopic.php?f=7&t=19392]
+
+[A floor is a kind of thing.  A floor is always scenery.  A floor is always privately-named.  
+The name of a floor is usually "It keeps us from falling to the center of the Earth at least."
+
+Before putting something on a floor:
+	try dropping  the noun instead.
+
+Instead of looking under a floor:
+	say "Maybe if you were a mole."
+
+Before taking a floor: 
+		say "Much too much for one person to carry." instead.
+		
+Instead of doing something other than examining or taking or touching to a floor:
+	say "Not likely to do much."
+		
+Understand "floor" or "flooring" as floor when location is not an outdoor room.
+Understand "ground" as floor when location is an outdoor room.		]
+	
 
 The floor is a backdrop.  The floor is everywhere.  "TODO:  floor description"	
 
@@ -729,7 +788,7 @@ instead of fixing the town-map:
 		if slip-of-paper is off-stage:
 			say "[line break]As you move the framed map a slip of paper falls from behind and floats to the floor.";
 			now the slip-of-paper is in entryway;
-			award the "Found the Note" achievement;
+[			award the "Found the Note" achievement;]
 	otherwise:
 		say "You try to adjust the map, but it's hanging about as straight as it's going to get.".
 
@@ -739,7 +798,7 @@ After taking the town-map:
 	if slip-of-paper is off-stage:
 		say "[line break]As you move the framed map a slip of paper falls from behind and floats to the floor.";
 		now the slip-of-paper is in entryway;
-		award the "Found the Note" achievement;
+[		award the "Found the Note" achievement;]
 
 	
 The highlighted road is a thing.  The description of highlighted road is "A short road labeled Basin St is highlighted on the map."  Understand "yellow" as highlighted road.
@@ -908,7 +967,7 @@ Instead of opening the master-bedroom-window:
 
 Part 1 - Hornets Nest
 
-The hornets nest is a part of the master-bedroom-window.  The description of hornets nest is "[nest-description]."
+The hornets nest is a part of the master-bedroom-window.  The description of hornets nest is "[if the noun is seen][nest-description].[end if]".  The hornets nest is unseen.
 The sound of the hornets nest is "[buzz-of-hornets]".
 
 To say buzz-of-hornets:
@@ -917,7 +976,7 @@ To say buzz-of-hornets:
 	if it is sunrise or it is sunset:
 		say "a low hum from the resting insects.";
 	otherwise:
-		say "not much of anything".
+		say "nothing".
 
 To say nest-description:
 	if it is sunrise:
@@ -1353,3 +1412,23 @@ Book 30 Workshop
 
 The workshop is a room in west-side.  The workshop is south of orchard.   the workshop is southwest of backyard.
 The printed name of workshop is "Workshop".
+
+
+Volume 99 - Not for release
+
+Book 1 - Testing commands
+
+Chapter 1 - Object Stats
+
+Requesting object status of is an action out of world applying to one visible thing.
+
+Understand "objstat [any thing]" as requesting object status of.
+
+Report requesting object status of (this is the report object status rule):
+	say "[noun] - [if seen]seen[otherwise]unseen[end if] /
+		[if familiar]familiar[otherwise]unfamiliar[end if] /
+		[if examined]examined[otherwise]unexamined[end if] /
+		[if known]known[otherwise]unknown[end if].[line break]
+		[if audible]audible[otherwise]inaudible[end if] /
+		[if smellable]smelly[otherwise]odorless[end if] /
+		"
