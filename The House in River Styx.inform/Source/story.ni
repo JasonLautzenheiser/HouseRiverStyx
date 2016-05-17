@@ -52,6 +52,7 @@ To set the/-- pronoun him to (O - an object): (- LanguagePronouns-->6 = {O}; -).
 To set the/-- pronoun her to (O - an object): (- LanguagePronouns-->9 = {O}; -).
 To set the/-- pronoun them to (O - an object): (- LanguagePronouns-->12 = {O}; -).
 
+
 Part 3 - Modifications to Standard Actions
 
 instead of pushing or pulling or turning an open door:  try closing the noun.
@@ -124,17 +125,22 @@ Part 7 - Input editing
 First after reading a command:
 	remove stray punctuation.
 	
-Part 8 - Verbs
+Part 8 - Routes
+
+To decide whether there is a route from (the start - an object) to (the end - an object):
+	decide on whether or not the number of moves from the start to the end is not -1.
+
+Part 9 - Verbs
 
 To peer is a verb.
 
 
-Part 9 - Versioning	
+Part 10 - Versioning	
 
 report requesting the story file version:
 	say "[i]Internal alpha 0.1[/i]"
 
-Part 10 - Not for release
+Part 11 - Not for release
 
 When play begins, seed the random-number generator with 88.
 
@@ -159,7 +165,7 @@ Include (-
 
 -) after "Definitions.i6t".			
 
-Book 2 
+Book 2 - Looking towards
 
 Looking toward is an action applying to one visible thing.
 Understand "look toward [any adjacent room]" as looking toward.
@@ -243,6 +249,9 @@ Check knocking on a door:
 	if the far side does not enclose someone:
 		say "No one answers." instead.
 
+Instead of looking under a door:	
+	say "There is no room between the floor and [the noun]."
+
 
 
 
@@ -318,8 +327,31 @@ Instead of going to an impassible room (this is the can't go to impassible rooms
 Instead of someone going to an impassible room (this is the NPCs can't go to impassible rooms rule): stop the action.
 
 
+Chapter 1 Intervisibility
 
+Intervisibility relates rooms to each other in groups.  The verb to be connected with implies the intervisibility relation.
 
+Definition: a room  is inter-visible if it is connected with more than one room.
+
+After deciding the scope of the player when the location is an inter-visible room:
+	repeat with other place running through rooms which are connected with the location:
+		unless the other place is the location, place the other place in scope.
+		
+After looking when the location is an inter-visible room:
+	repeat with other place running through rooms which are connected with the location:
+		if the other place is not the location, describe locale for other place.
+
+Rule for reaching inside a room (called target) which is connected with the location:
+	if the current action is giving, allow access;
+	let way be the best route from the location to the target;
+	if the way is not a direction:
+		say "You'd have to go into [the target] first to touch [item-too-far].";
+		
+To say item-too-far:
+	if the second noun is not nothing:
+		say the second noun;
+	otherwise:
+		say the noun.
 
 Book 10 - Valid directions
 
@@ -360,8 +392,16 @@ Local looking is an action applying to one thing.
 
 Carry out local looking:
 	try looking.
+	
+Book 14 - Game State
 
-Book 14 - New Actions
+adventure-start is a truth state that varies.  adventure-start is false.
+adventure-start-location is a room that varies.  
+
+To decide whether it is run-down-house: decide on whether or not dark-adventure is happening.
+
+
+Book 15 - New Actions
 
 
 Part 1 - Fixing
@@ -411,7 +451,7 @@ Report sliding on:
 
 
 
-Book 15 - Default world model tweaks
+Book 16 - Default world model tweaks
 
 Part 1 - Drawers
 
@@ -437,7 +477,8 @@ Instead of tasting a sink:
 	
 A mirror is a kind of thing.  A mirror is in every bathroom.  A mirror is usually scenery. Understand "glass" or "reflection" as a mirror.
 
-The description of a mirror is "It's shiny and very clean."
+Instead of examining a mirror (called the scry):
+	try searching the scry.
 
 Instead of searching a mirror:
 	say "You have not been sleeping well as of late and your face shows it.  The bags under your eyes, the unkempt hair and old, dirty clothing, leaves an image that is not all that pleasing looking back at you."
@@ -505,7 +546,7 @@ Instead of consulting a book about a topic: say "There doesn't seem to be an ind
 
 Before listing contents [when taking inventory]: group books together as "books".
 
-Book 16 - Translucency
+Book 17 - Translucency
 
 A thing can be translucent.  A thing is usually not translucent.
 
@@ -530,7 +571,7 @@ Report someone examining something through something:
 	say "[The actor] [peer] into [the second noun], examining [the noun] closely."
 	
 
-Book 17 - About and Credits
+Book 18 - About and Credits
 
 Requesting story information is an action out of world applying to nothing.  Understand "about" as requesting story information.
 Carry out requesting story information:
@@ -543,11 +584,11 @@ Carry out displaying the credits:
 	Cover art by[br]
 	Title card by[br]".
 
-Book 18 - Useless Actions
+Book 19 - Useless Actions
 
 Understand "xyzzy" or "say xyzzy" as xyzzying.  Xyzzying is an action applying to nothing.  Carry out xyzzying: say "Ulp."
 
-Book 19 - Day and Night
+Book 20 - Day and Night
 
 Night is a recurring scene.  Night begins when play begins.  Night ends when the time of day is 6:00 AM.
 Sunrise is a recurring scene.  Sunrise begins when night ends.  Sunrise ends when the time of day is 7:00 AM.
@@ -561,7 +602,7 @@ To decide whether it is sunrise: decide on whether or not sunrise is happening.
 To decide whether it is sunset: decide on whether or not sunset is happening.
 To decide whether it is crepuscular: if sunrise is happening or sunset is happening, yes; no.
 
-Book 20 - Achievements
+Book 21 - Achievements
 
 [Use persistent achievements.
 
@@ -577,6 +618,8 @@ achievement	description	validation (rule)	awarded
 Volume 3 - Characters
 
 Book 1 - Player
+
+The player is female.
 
 Part 1 - Some activities on oneself
 
@@ -759,7 +802,7 @@ The entryway is a room in ground-floor.  The printed name of entryway is "Entran
 
 The coat-rack is a thing in the entryway.  The coat-rack is undescribed.  The coat-rack is scenery supporter.  The printed name of the coat-rack is "coat rack".  The description of coat-rack is "The solid oak coat rack stands stoicly in the south corner just inside the door, as if it guarding the entry into the rest of the house."
 
-The umbrella-stand is a thing in the entryway.  The umbrella-stand is undescribed.  The umbrella-stand is scenery container.  The printed name of the umbrella-stand is "umbrella stand". The description of umbrella-stand is "The umbrella stand is pressed deep into the north corner of the entryway.  It's faux brass exterior gleams with the dimness of age, but it's functional and its deep interior will hold your umbrella (or other items) just fine."
+The umbrella-stand is a thing in the entryway.  The umbrella-stand is undescribed.  The umbrella-stand is scenery container.  The printed name of the umbrella-stand is "umbrella stand". The description of umbrella-stand is "The umbrella stand is pressed deep into the north corner of the entryway.  It's faux brass exterior gleams with the dimness of age, but it's functional and its deep interior will hold your umbrella (or other items) just fine."  Understand "umbrella stand" or "stand" as umbrella-stand.
 
 Part 1 - Items
 
@@ -815,16 +858,20 @@ The printing of the slip-of-paper is "Hi Todd".
 Part 2 - Main Staircase	
 
 The entryway-staircase is a staircase.  The printed name of entryway-staircase is "stairs".  The entryway-staircase is up from entryway and down from upstairs-landing.
+
 Understand "stairs" and "staircase" as entryway-staircase when location is entryway.
 
 The banister is part of the entryway-staircase.  The description of the banister is "The polished cherry banister flows alongside the stairs.  It sits uncomfortably low and the fear of falling over it while going down the steep stairs is a constant concern."
 
-Instead of sliding on the banister:
+Before sliding on the banister:
 	if the location is entryway:
-		say "Sliding up the banister will do nothing more than leave you right where you are, but if you insist I'll give it a try.....yep, you're right back where you started.";
+		say "Sliding up the banister will do nothing more than leave you right where you are, but if you insist I'll give it a try.....yep, you're right back where you started." instead;
 	if the location is upstairs-landing:
-		say "You climb up on the banister and begin your slide, picking up speed before you reach an uncomfortable decision that jumping off is preferable to hitting the newel at full speed.";
-		move the player to entryway.
+		if adventure-start is false:
+			try going down instead;
+		otherwise:
+			say "You climb up on the banister and begin your slide, picking up speed before you reach an uncomfortable decision that jumping off is preferable to hitting the newel at full speed.";
+			try going down instead.
 
 	
 Book 6 - Parlor
@@ -1009,9 +1056,18 @@ Book 11 - Attic
 
 The attic is a room in the second-floor.  The printed name of attic is "Attic".  The description of attic is "The attic with its low beams is made smaller by heaps of dusty piles.  Old battered boxes and garbage bags filled with items for later use.  To the south the old wooden door leads to walkin closet and a set of stairs lead down."
 
+[Going down for the first time triggers the adventure mode]
+Instead going down in attic for the first time:
+	if adventure-start is false:
+		now adventure-start is true;
+		now adventure-start-location is pantry-dark;
+		if debug mode is true:
+			say "setting adventure-start-location to pantry.".
+			
+
 Book 12 - Master Walkin Closet
 
-The master-walkin is a room in second-floor.  The master-walkin is west of the master-bedroom.
+The master-walkin is a room in second-floor.  The master-walkin is west of the master-bedroom.  The master-walkin is connected with master-bedroom.
 The printed name of master-walkin is "Master Walkin Closet".
 The description of master-walkin is "The walkin closet, once the servants' quarters, now holds clothes racks that sit amongst the low beams. You have plans to finish this, but for now it's just an extension of your bedroom.  The bedroom is back east and an old wooden door leads north to the attic."
 
@@ -1077,57 +1133,39 @@ Before opening secret-door:
 	if secret-door2 is in nothing:
 		say "You push on the door, but it feels like something is blocking the other side." instead;
 		
+Book 14 - Master Bath
 
-Book 14 - Play room
+The master-bath is a bathroom in second-floor.  The master-bath is northeast of the master-bedroom.
+The printed name of master-bath is "Master Bathroom".
+		
+
+Book 15 - Play room
 
 The play-room is a room in second-floor.  The play-room is south of the upstairs-hallway.
 The printed name of play-room is "Play Room".	The description of play-room is "The kids play room is filled with all kinds of toys and books.  The kids do a decent job of keeping things picked up, though there are a few books and toys strewn around the room.  A [beanbag] sits in the corner next to the [play-bookshelf] on the east wall.  Along the wall to the west is a [toychest][if stuffed animals are on toychest-top] with [stuffed animals] sitting on top[otherwise].  Some [stuffed animals] are strewn all over the floor[end if].  A window looks out to the south."
 
+Chapter 1 - Beanbag chair
+
 A beanbag is a chair in the play-room.  The description of beanbag is "The large beanbag is the kids favorite place to read."
 Understand "bag" as beanbag.
 
-A play-bookshelf is a bookshelf in play-room.  The description of play-bookshelf is "A small bookshelf sits along the east wall holding many, mostly childrens books."  The printed name of play-bookshelf is "bookshelf".
-Understand "small/-- bookshelf/shelf/bookshelves/shelve" as play-bookshelf when location is play-room.
+Chapter 2 - Toychest
 
-A toychest is a closed container in play-room. the toychest is openable. The toychest-top is a supporter.  The toychest-top is part of the toychest.  Understand "chest" as toychest.  Understand "top" or "toychest top" or "lid" as toychest-top when location is play-room.
-The description of toychest is "The large toychest was a hand me down from your mother.  [if toychest is open and the number of things in toychest is one]There is nothing but some random toys inside.[otherwise]Amongst the random toys you see [list of things in the toychest].[end if]"
-[TODO:: fix issue with displaying contents of chest]
+A toychest is a closed openable container in play-room.  The toychest is fixed in place. The toychest-top is a supporter.  The toychest-top is part of the toychest.  Understand "chest" as toychest.  Understand "top" or "toychest top" or "lid" as toychest-top when location is play-room.
+The description of toychest is "The large toychest was a hand me down from your mother. "
 
-Some random toys are scenery in the toychest.
+To say toychest-contents:
+	if toychest is open:
+		if the number of things in toychest is one:
+			say "There are some random toys inside.";
+
+Some random toys are in the toychest.  The random toys are described.
 
 instead of doing anything with the random toys:
-	say "They is really nothing special about the random toys."
+	say "Just some old toys that you've not had the heart to throw out.  Some are broken and of little use."
 
 instead of examining the toychest-top:
 	try examining the toychest instead.
-
-The bulge is a thing. The printed name of bulge is "small bulge in the wall".
-
-The playroom-window is an easywindow in play-room. The playroom-window is scenery. The lookthrough of playroom-window is "You have a good view of the cospe of pine trees from this room through the [if open]open [end if]window."  The playroom-window is openable.  The printed name of playroom-window is "window".
-
-instead of entering the playroom-window:
-	say "Climbing out onto the slick metal roof is not safe."
-	
-instead of going south in the play-room:
-	if playroom-window is open:
-		try entering the playroom-window instead;
-	otherwise:
-		say "The only way south would be through the window, which is neither open nor a good idea."
-
-The secret-door2 is an easydoor.  The description of secret-door2 is "The small door is just big enough for you to fit through if you crawl on your knees." The printed name of secret-door2 is "door hidden behind the toychest".
-secret-door2 leads to master-closet.
-
-instead of going west in play-room:
-	if secret-door2 is in location:
-		try entering secret-door2 instead;	
-	
-After opening secret-door2 for the first time:
-	if secret-door is in nothing:
-		say "As you pull the small door open, rolls of wallpaper come tumbling through.";
-		now secret-door is in master-closet;
-		now rolls of wallpaper are in play-room;
-	otherwise:
-		say "You open the small door revealing a passage into darkness."
 
 Some stuffed animals are things on toychest-top.  The description of stuffed animals is "The animals are a lifetime collection from your childhood and those of your kids.  [if stuffed animals are on toychest-top]There are so many they cover most of the top of the toychest and perched precariously halfway up the wall.[end if]"
 
@@ -1145,18 +1183,53 @@ after opening the toychest for the first time:
 	say "As you open the chest, the lid pushes against the wall and you have to move it out slightly for the lid to fully open.  As you do, you notice a slight bulge in the wall that you never noticed before.";
 	now the toychest is open;
 	now the bulge is in the play-room instead;
-		
+
+
+Chapter 3 - bulge in wall
+
+The bulge is a thing. The printed name of bulge is "small bulge in the wall".
+
 instead of examining, touching, taking, attacking, pushing or pulling the bulge:
 	say "As you [verb word] the bulge, the wallpaper tears with your touch and you discover a small door behind the toychest.";
 	now the bulge is off-stage;
 	now the secret-door2 is in play-room;
-		
 
+Chapter 4 - Playroom window
 
+The playroom-window is an easywindow in play-room. The playroom-window is scenery. The lookthrough of playroom-window is "You have a good view of the cospe of pine trees from this room through the [if open]open [end if]window."  The playroom-window is openable.  The printed name of playroom-window is "window".
 
+instead of entering the playroom-window:
+	say "Climbing out onto the slick metal roof is not safe."
+	
+instead of going south in the play-room:
+	if playroom-window is open:
+		try entering the playroom-window instead;
+	otherwise:
+		say "The only way south would be through the window, which is neither open nor a good idea."
 
+Chapter 5 - Playroom Secret Door
 
-Part 1 - Playroom Books
+The secret-door2 is an easydoor.  The description of secret-door2 is "The small door is just big enough for you to fit through if you crawl on your knees." The printed name of secret-door2 is "door hidden behind the toychest".
+secret-door2 leads to master-closet.
+
+instead of going west in play-room:
+	if secret-door2 is in location:
+		try entering secret-door2 instead;	
+	
+After opening secret-door2 for the first time:
+	if secret-door is in nothing:
+		say "As you pull the small door open, rolls of wallpaper come tumbling through.";
+		now secret-door is in master-closet;
+		now rolls of wallpaper are in play-room;
+	otherwise:
+		say "You open the small door revealing a passage into darkness."
+
+Chapter 6 - Playroom bookshelf
+
+A play-bookshelf is a bookshelf in play-room.  The description of play-bookshelf is "A small bookshelf sits along the east wall holding many, mostly childrens books."  The printed name of play-bookshelf is "bookshelf".
+Understand "small/-- bookshelf/shelf/bookshelves/shelve" as play-bookshelf when location is play-room.
+
+Section 1 - Playroom Books
 
 The playroom book is a kind of book.
 
@@ -1169,14 +1242,14 @@ Table of Readable Playroom Books
 parlor book	author	description
 Invasion of the Appleheads	"Annette and Gina Cscone"	"Kate couldn't believe she was holding her parents in her hands."
 
-Book 15 - Servants Stairs
+Book 16 - Servants Stairs
 
 The servants-stairs is a staircase. The description is "The dark stairs that lead down look a bit rickety, but usuable. [first time]These were once the servants stairs that lead directly to the kitchen area from the servant's quarters.[only]".
 The printed name of servants-stairs is "servants stairs".  The servants-stairs are up from pantry and down from attic.   
 
 Understand "stairs" and "staircase" as servants-stairs when location is pantry or the location is attic.
 
-Book 16 - Upstairs-hallway
+Book 17 - Upstairs-hallway
 
 The upstairs-hallway is a room in second-floor.  The upstairs-hallway is west of the upstairs-landing.
 understand "hallway" as upstairs-hallway when location is in second-floor.
@@ -1184,13 +1257,21 @@ The printed name of upstairs-hallway is "Second Floor Hallway".
 
 The description of upstairs-hallway is "The long hallway travels east to west with rooms branching out.  There is a runner carpet that covers the hardwood floor.  Photographs of ancestors line the walls.  The hallway ends to the west in the master bedroom and to the east at the stairs leading down.  To the north lies the kids bathroom and to the south is the playroom." 
 
-Book 17 - Upstairs Landing
+Book 18 - Upstairs Landing
 
 The upstairs-landing is a room in second-floor.  The printed name of upstairs-landing is "Second Floor Landing".
 The description of upstairs-landing is "You're at the top of the main stairs leading back to the first floor.  The steep stairs curve slightly to the left before continuing doward.  The low [banister] of polished cherry, flows downward with the stairs on the left side.[p]The hallway continues to the west and a small alcove is tucked away to the east.  The kids bedroom is north of here."
 
+[Going down for the first time triggers the adventure mode]
+instead going down in upstairs-landing for the first time:
+	if adventure-start is false:
+		now adventure-start is true;
+		now adventure-start-location is entryway-dark;
+		if debug mode is true:
+			say "setting adventure-start-location to entryway-dark."
+		
 
-Book 18 Alcove
+Book 19 Alcove
 
 The alcove is a room in second-floor.  The alcove is east of the upstairs-landing.
 The printed name of alcove is "Alcove".
@@ -1235,7 +1316,7 @@ Table of Readable Kids Books
 parlor book	author	description
 Mrs Brice's Mice	"Syd Hoff"	"Mrs. Brice had twenty-five mice."
 
-Book 19 - Kitchen
+Book 20 - Kitchen
 
 The main-kitchen is a kitchen in ground-floor.  The main-kitchen is west of the living-room and southwest of the dining-room.
 The printed name of the main-kitchen is "Kitchen".  The description of main-kitchen is "The kitchen has been greatly remodeled since you bought the house.  Kitchen cabinets line the walls where there were holes in the walls from the stolen copper piping.  The new appliances, the refrigerator, stove and sink all with stainless steel finish in contrast to the marble countertop round out the look of a modern kitchen that still fits nicely with the vintage feel of your house."
@@ -1244,7 +1325,73 @@ The description of the refrigerator is "The fridge sits in a cubby hole to the l
 
 The description of the sink is "The dual basin stainless sink is large and deep."  The sound of the sink is "the drip of the faucet"
 
-Volume 6 -  Unimplemented map
+Volume 6 - Dark Adventure Map
+
+Book 1 - Regions
+
+outside-house-dark is a region.
+near-house-dark is a region in outside-house-dark.
+north-side-dark is a region in outside-house-dark.
+west-side-dark is a region in outside-house-dark.
+south-side-dark is a region in outside-house-dark.
+east-side-dark is a region in outside-house-dark.
+inside-house-dark is a region.
+basement-region-dark is a region in inside-house-dark.
+ground-floor-dark is a region in inside-house-dark.
+second-floor-dark is a region in inside-house-dark.
+
+
+Book 1 - Entryway	
+
+The entryway-dark is a room in ground-floor-dark.  The printed name of entryway-dark is "Entranceway". Understand  "entranceway/entryway" as entryway. "Entry way just inside the house.  To the east, the [front-door-dark] is boarded up and there is some engraving etched into the wood.  A rusted tin umbrella stand sits in the corner."
+
+Chapter 1 - Front door
+
+The front-door-dark is a door in entryway-dark.  The printed name is "front door". The front-door-dark is scenery.  The front-door-dark is closed.  The front-door-dark is unopenable.  The front-door-dark is east of entryway-dark.  "[If the player is in entryway-dark]The door is nailed shut.  There is some odd gothic graffiti etched on the door[end if]."
+
+Does the player mean doing something with the front-door-dark when the location is entryway-dark:  it is likely.
+Understand "door" or "front door" as front-door-dark when the location is entryway-dark.
+
+Before opening the front-door-dark:
+	if location is entryway-dark:
+		say "Seeing that there are boards nailed across the door, that is not likely to happen." instead.
+		
+Instead of going east in entryway-dark:
+	try opening the front-door-dark instead.
+	
+Section 1 - Graffiti
+
+Graffiti is a part of the front-door-dark.  The description of graffiti is "[if the player is in the entryway-dark]You can't make out the language the graffiti is written in.[otherwise]You can't see any such thing.[end if]"
+
+understand "etching/etchings" as graffiti.
+
+Chapter 2 - Umbrella Stand
+
+Umbrella-stand-dark is a thing in entryway-dark.  The umbrella-stand-dark is scenery container.  The printed name of the umbrella-stand-dark is "umbrella stand". Understand "umbrella stand" or "stand" as umbrella-stand-dark.  The description is "The rusted umbrella stand is pressed deep into the north corner of the entryway."
+
+Book 2 - Parlor
+
+The parlor-dark is a room in ground-floor-dark. The printed name of parlor-dark is "Parlor".  Understand "parlor" as parlor-dark.  "The parlor was used for viewing the body during funerals hosted here at the home.  It is largely empty, though a [long table] sits along the north wall, presumably this is where they placed the casket for viewing."  The parlor-dark is north of the entryway-dark. 
+
+The long table is a supporter in parlor-dark.  "The long table once supported many caskets of those that passed away."
+
+Book 3 - Pantry
+
+The pantry-dark is a room in ground-floor-dark. The printed name of pantry-dark is "Pantry".  Understand "pantry" as pantry-dark.  "The pantry is a small dark room that has [shelves] on both sides.  Just a few [old cans] and some [rotted vegetables] remain after all the years of emptiness."
+
+Chapter 1 - Shelves
+
+The pantry-shelves are supporters in pantry-dark.  The description of some pantry-shelves is "The shelves are made of rough-hewn slats of wood."  The printed name of pantry-shelves is "shelves".  Understand "shelves / shelf" as pantry-shelves.
+
+Chapter 2 - Old cans
+
+Some old cans are things on pantry-shelves.  The description of cans is "Some old tin cans containing unknown contents."
+
+Chapter 3 - Rotted Vegetables
+
+The rotted vegetables are a thing on pantry-shelves. The description of rotted vegetables is "The lumps of organic matter that were once vegetables are indisguisable from one another as to what they once were."
+
+Volume 7 -  Unimplemented map
 
 Book 1 - South Porch
 
@@ -1253,7 +1400,7 @@ The printed name of south-porch is "South Porch".
 
 Book 2 South door
 
-south-door is a door.  The south-door is south of the kitchen and north of south-porch.  The printed name of south-door is "sliding door".
+south-door is a door.  The south-door is south of the main-kitchen and north of south-porch.  The printed name of south-door is "sliding door".
 
 Book 3 North West Porch
 
@@ -1396,27 +1543,95 @@ The kids-bathroom is a bathroom in second-floor.  The kids-bathroom is north of 
 The printed name of kids-bathroom is "Second Floor Bathroom".
 
 
-Book 28 Master Bath
-
-The master-bath is a bathroom in second-floor.  The master-bath is northeast of the master-bedroom.
-The printed name of master-bath is "Master Bathroom".
 
 
 
-Book 29 Spring House
+
+Book 28 Spring House
 
 The spring-house is a room in north-side.  the spring-house is west of north-yard.
 The printed name of spring-house is "Spring House".
 
-Book 30 Workshop
+Book 29 Workshop
 
 The workshop is a room in west-side.  The workshop is south of orchard.   the workshop is southwest of backyard.
 The printed name of workshop is "Workshop".
 
 
-Volume 99 - Not for release
+Volume 8 - Scenes
 
-Book 1 - Testing commands
+Book 1 - Start game
+
+Start-game is a scene.  Start-game begins when play begins.
+Start-game ends when adventure-start is true.
+
+
+
+Book 2 - Pushed Down Steps
+
+Pushed-down-stairs is a scene.  pushed-down-stairs begins when start-game ends.
+
+When pushed-down-stairs begins:
+		say "As you move towards the stairs you feel a strong shove in your back.  You lose your balance and begin to fall.  The last thing you remember seeing as everything turns black is a ghostly figure of a young woman standing at the top of the stairs.";
+		now the player is in unconsiousness.
+		
+pushed-down-stairs ends when unconsious-turn is 3.
+
+Book 3 - Dark Adventure
+
+dark-adventure is a scene.  dark-adventure begins when pushed-down-stairs ends.
+
+		
+Part 1 - Unconsiousness
+
+Unconsiousness is a room.  The description of unconsiousness is "You see and hear nothing."
+
+before doing anything when location is unconsiousness for more than one turn:
+	say "You try but nothing happens."
+
+Chapter 1 - Events
+
+unconsious-turn is a number that varies.  Unconsious-turn is 0.
+every turn when player is in unconsiousness:
+	if unconsious-turn is 0:
+		say "The blackness comes at you from all sides, you see nothing"; 
+		now unconsious-turn is 1;
+	otherwise if unconsious-turn is 1:
+		say "Flickers of light spark at the sides of your vision."; 
+		now unconsious-turn is 2;
+	otherwise if unconsious-turn is 2:
+		say "A vision is forming of your home in it's former state.  Grandeur beyond what you've restored it to."; 
+		now unconsious-turn is 3;
+	otherwise if unconsious-turn is 3:
+		say "The vision quickly fades and is replaced to a place in deep disrepair.  It's your home you think, yet it's not.  It's a vision of a home in decay, shapes in the darkness moving as if creatures move in for the kill.  As you continue to blink and clear your head, you realize this is your reality a house in disrepair."; 
+		if debug mode is true:
+			say "moving the player to [adventure-start-location].";
+		now the player is in adventure-start-location;
+
+
+
+
+	
+
+
+
+
+Volume 9 - Not for release
+
+Book 1 - Debug mode
+
+Debug mode is a truth state that varies.  debug mode is false.
+
+Toggling debug mode is an action out of world applying to nothing.  Understand "caskly" as toggling debug mode.
+Carry out toggling debug mode:
+	if debug mode was true, now debug mode is false;
+	if debug mode was false, now debug mode is true;
+	
+report toggling debug mode:
+	say "Debug mode [if debug mode is true]on[else]off[end if]."
+	
+
+Book 2 - Testing commands
 
 Chapter 1 - Object Stats
 
@@ -1432,3 +1647,8 @@ Report requesting object status of (this is the report object status rule):
 		[if audible]audible[otherwise]inaudible[end if] /
 		[if smellable]smelly[otherwise]odorless[end if] /
 		"
+
+Chapter 2 - test scripts
+
+test darkentry with "e / e / d / z / z / z" in the master-bedroom.
+test darkpantry with  "w / n / d / z / z / z" in the master-bedroom.
